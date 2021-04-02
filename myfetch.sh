@@ -18,7 +18,7 @@ machinevendor="$(cat /sys/devices/virtual/dmi/id/sys_vendor)"
 case $machinevendor in
 	*Dell*)
 		machinecolor=$blue ;;
-	*Lenovo*)
+	*[lL][eE][nN][oO][vV][oO]*)
 		machinecolor=$red ;;
 	*HP*)
 		machinecolor=$blue ;;
