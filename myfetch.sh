@@ -13,6 +13,7 @@ darkgraybg='\033[100m'
 os="$(cat /etc/*-release | grep PRETTY_NAME | awk -F = '{ print $2 }' | sed -e 's/\"//g')"
 whothisis="$USER@$(hostname)"
 upt="$(uptime | awk '{ print $3 }' | sed 's/,//')"
+kernel="$(uname -r)"
 
 machinevendor="$(cat /sys/devices/virtual/dmi/id/sys_vendor)"
 case $machinevendor in
@@ -20,7 +21,7 @@ case $machinevendor in
 		machinecolor=$blue ;;
 	*[lL][eE][nN][oO][vV][oO]*)
 		machinecolor=$red ;;
-	*HP*)
+	*[hH][pP]*)
 		machinecolor=$blue ;;
 	*)
 		machinecolor=$orange ;;
@@ -48,7 +49,7 @@ $green / /       \\/ /       \\ \\    $white Uptime: $orange$upt
 $green \\ \\       / /\\       / /   $white Machine: $machine
 $green  \\ \\_____/ /\\ \\_____/ /   $white RAM used: $ram
 $green   \\_______/  \\_______/   $white Disk used: $disk
-\n" ;;
+                             $white Kernel: $orange$kernel\n\n" ;;
 	
 	*[fF]edora*)
 		printf  \
@@ -58,7 +59,7 @@ $blue FFFFF${white}F${blue}FFFFFF      $white Uptime: $orange$upt
 $blue FFF${white}FFFFF${blue}FFFF     $white Machine: $machine
 $blue FFFFF${white}F${blue}FFFFFF    $white RAM used: $ram
 $blue FFF${white}FFF${blue}FFFFF    $white Disk used: $disk
-$blue FFFFFFFFF
+$blue FFFFFFFFF         $white Kernel: $orange$kernel
 \n" ;;
 
 	*)
