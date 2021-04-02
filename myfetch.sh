@@ -38,7 +38,6 @@ totaldisk="$(echo $dfop | awk '{ print $2 }')"
 useddisk="$(echo $dfop | awk '{ print $3 }')"
 disk="$orange$useddisk / $totaldisk"
 
-os="Fedora"
 case $os in
 	*[oO]penS[uU]SE*[tT]umbleweed*)
 		printf \
