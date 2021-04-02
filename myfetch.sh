@@ -66,3 +66,4 @@ $blue FFFFFFFFF
 "$white What OS are you on? I sure don't know!\n" ;;
 
 esac
+printf "$white"
