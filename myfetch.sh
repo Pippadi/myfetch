@@ -6,6 +6,7 @@ orange='\033[33m'
 white='\033[37m'
 blue='\033[34m'
 red='\033[31m'
+black='\033[30m'
 
 lightgreenbg='\033[102m'
 darkgraybg='\033[100m'
@@ -39,6 +40,7 @@ totaldisk="$(echo $dfop | awk '{ print $2 }')"
 useddisk="$(echo $dfop | awk '{ print $3 }')"
 disk="$orange$useddisk / $totaldisk"
 
+os=Linux
 case $os in
 	*[oO]penS[uU]SE*[tT]umbleweed*)
 		printf \
@@ -64,7 +66,13 @@ $blue FFFFFFFFF         $white Kernel: $orange$kernel
 
 	*)
 		printf \
-"$white What OS are you on? I sure don't know!\n" ;;
-
+"\nDo you know which OS this is? I sure don't know what it looks like!\nHere's your information anyway:\n
+$cyan            $whothisis
+$white        OS: $orange$os
+$white    Uptime: $orange$upt
+$white   Machine: $machine
+$white  RAM used: $ram
+$white Disk used: $disk
+$white    Kernel: $orange$kernel\n\n" ;;
 esac
 printf "$white"
