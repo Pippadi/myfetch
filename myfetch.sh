@@ -11,7 +11,7 @@ black='\033[30m'
 lightgreenbg='\033[102m'
 darkgraybg='\033[100m'
 
-os="$(cat /etc/*-release | grep PRETTY_NAME | awk -F = '{ print $2 }' | sed -e 's/\"//g')"
+os="$(grep PRETTY_NAME /etc/os-release | awk -F = '{ print $2 }' | sed -e 's/\"//g')"
 whothisis="$USER@$(hostname)"
 upt="$(uptime | awk '{ print $3 }' | sed 's/,//')"
 kernel="$(uname -r)"
@@ -40,6 +40,7 @@ totaldisk="$(echo $dfop | awk '{ print $2 }')"
 useddisk="$(echo $dfop | awk '{ print $3 }')"
 disk="$orange$useddisk / $totaldisk"
 
+#os="Pop!_OS"
 case $os in
 	*[oO]penS[uU]SE*[tT]umbleweed*)
 		printf \
@@ -50,7 +51,8 @@ $green / /       \\/ /       \\ \\    $white Uptime: $orange$upt
 $green \\ \\       / /\\       / /   $white Machine: $machine
 $green  \\ \\_____/ /\\ \\_____/ /   $white RAM used: $ram
 $green   \\_______/  \\_______/   $white Disk used: $disk
-                             $white Kernel: $orange$kernel\n\n" ;;
+                             $white Kernel: $orange$kernel\n
+$white\n" ;;
 	
 	*[fF]edora*)
 		printf  \
@@ -61,7 +63,19 @@ $blue FFF${white}FFFFF${blue}FFFF     $white Machine: $machine
 $blue FFFFF${white}F${blue}FFFFFF    $white RAM used: $ram
 $blue FFF${white}FFF${blue}FFFFF    $white Disk used: $disk
 $blue FFFFFFFFF         $white Kernel: $orange$kernel
-\n" ;;
+$white\n" ;;
+
+	*[pP]op*[oO][sS]*)
+		printf "
+$cyan       PPPPPPPPPPPPPPPP                $blue $whothisis
+$cyan      PPP${white}PPP${cyan}PPPPPPP${white}PP${cyan}PPP           $white OS: $cyan$os
+$cyan     PPPPP${white}P${cyan}P${white}P${cyan}PPPPP${white}PP${cyan}PPPPP      $white Uptime: $orange$upt
+$cyan    PPPPPPP${white}PPP${cyan}PPP${white}PP${cyan}PPPPPPP    $white Machine: $machine
+$cyan    PPPPPPPP${white}P${cyan}PPP${white}PP${cyan}PPPPPPPP   $white RAM used: $ram
+$cyan     PPPPPPPP${white}P${cyan}P${white}()${cyan}PPPPPPPP   $white Disk used: $disk
+$cyan      PPPP${white}CEEEEEEEED${cyan}PPPP       $white Kernel: $orange$kernel
+$cyan       PPPPPPPPPPPPPPPP
+\n";;
 
 	*)
 		printf \
