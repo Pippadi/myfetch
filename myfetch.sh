@@ -13,7 +13,9 @@ darkgraybg='\033[100m'
 
 os="$(grep PRETTY_NAME /etc/os-release | awk -F = '{ print $2 }' | sed -e 's/\"//g')"
 whothisis="$USER@$(hostname)"
-upt="$(uptime | awk '{ print $3 }' | sed 's/,//')"
+uptimestr="$(uptime)"
+upt="$(echo $uptimestr | awk -F, '{ print $1 }' | awk '{ for (i=3; i<=NF; i++) printf "%s ",$i }')"
+
 kernel="$(uname -r)"
 
 machinevendor="$(cat /sys/devices/virtual/dmi/id/sys_vendor)"
