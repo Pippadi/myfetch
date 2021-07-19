@@ -26,6 +26,8 @@ case $machinevendor in
 		machinecolor=$red ;;
 	*[hH][pP]*)
 		machinecolor=$blue ;;
+	*[aA]pple*)
+		machinecolor=$white ;;
 	*)
 		machinecolor=$orange ;;
 esac
@@ -77,7 +79,19 @@ $cyan    PPPPPPPP${white}P${cyan}PPP${white}PP${cyan}PPPPPPPP   $white RAM used:
 $cyan     PPPPPPPP${white}P${cyan}P${white}()${cyan}PPPPPPPP   $white Disk used: $disk
 $cyan      PPPP${white}CEEEEEEEED${cyan}PPPP       $white Kernel: $orange$kernel
 $cyan       PPPPPPPPPPPPPPPP
-\n";;
+\n" ;;
+
+	*[zZ]orin*)
+		printf "
+$blue         /ZZZZZZZZZZZZ\\               $cyan $whothisis
+$blue        ___________    _          $white OS: $blue$os
+$blue       /ZZZZZZZZZZ/   /Z\\     $white Uptime: $orange$upt
+$blue      /ZZZZZZZZ/   /ZZZZZ\\   $white Machine: $machine
+$blue      \\ZZZZZ/   /ZZZZZZZZ/  $white RAM used: $ram
+$blue       \\Z/   /ZZZZZZZZZZ/  $white Disk used: $disk
+$blue          _____________       $white Kernel: $orange$kernel
+$blue          \\ZZZZZZZZZZZ/
+\n" ;;
 
 	*)
 		printf \
