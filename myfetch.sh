@@ -44,7 +44,6 @@ totaldisk="$(echo $dfop | awk '{ print $2 }')"
 useddisk="$(echo $dfop | awk '{ print $3 }')"
 disk="$orange$useddisk / $totaldisk"
 
-#os="Pop!_OS"
 case $os in
 	*[oO]penS[uU]SE*[tT]umbleweed*)
 		printf \
@@ -91,6 +90,22 @@ $blue      \\ZZZZZ/   /ZZZZZZZZ/  $white RAM used: $ram
 $blue       \\Z/   /ZZZZZZZZZZ/  $white Disk used: $disk
 $blue          _____________       $white Kernel: $orange$kernel
 $blue          \\ZZZZZZZZZZZ/
+\n" ;;
+
+	*[uU]buntu*)
+		printf "
+$orange                ____
+$orange       ________/    \\         $cyan $whothisis
+$orange      / _______      )            $white OS: $orange$os
+$orange     / /       \\__  /         $white Uptime: $green$upt
+$orange  __/ /           \\ \\        $white Machine: $machine
+$orange /    \\            \\ \\      $white RAM used: $ram
+$orange(      )            ) )    $white Disk used: $disk
+$orange \\__  /            / /        $white Kernel: $red$kernel
+$orange    \\ \\         __/ /
+$orange     \\ \\_______/    \\
+$orange      \\________      )
+$orange               \\____/
 \n" ;;
 
 	*)
