@@ -7,6 +7,7 @@ white='\033[37m'
 blue='\033[34m'
 red='\033[31m'
 black='\033[30m'
+purple='\033[35m'
 
 lightgreenbg='\033[102m'
 darkgraybg='\033[100m'
@@ -28,6 +29,9 @@ case $machinevendor in
 		machinecolor=$blue ;;
 	*[aA]pple*)
 		machinecolor=$white ;;
+    *[aA][sS][uU][sS]* )
+        machinevendor="ASUS"
+        machinecolor=$red ;;
 	*)
 		machinecolor=$orange ;;
 esac
@@ -95,7 +99,7 @@ $blue          \\ZZZZZZZZZZZ/
 	*[uU]buntu*)
 		printf "
 $orange                ____
-$orange       ________/    \\         $cyan $whothisis
+$orange       ________/    \\                  $cyan $whothisis
 $orange      / _______      )            $white OS: $orange$os
 $orange     / /       \\__  /         $white Uptime: $green$upt
 $orange  __/ /           \\ \\        $white Machine: $machine
@@ -106,6 +110,20 @@ $orange    \\ \\         __/ /
 $orange     \\ \\_______/    \\
 $orange      \\________      )
 $orange               \\____/
+\n" ;;
+
+    *[gG]entoo*)
+        printf "
+$purple          _____                    $white $whothisis
+$purple         /     \\               $white OS: $purple$os
+$purple        (       \\          $white Uptime: $cyan$upt
+$purple         \\   /\\  \\        $white Machine: $machine
+$purple          \\  \\/   \\      $white RAM used: $ram
+$purple          /       /     $white Disk used: $disk
+$purple         /      _/         $white Kernel: $cyan$kernel
+$purple        /     _/
+$purple       (   __/
+$purple        \\_/
 \n" ;;
 
 	*)
